@@ -23,9 +23,9 @@ namespace Zeux.Test.Server.Controllers
         {
 
             if (string.IsNullOrWhiteSpace(type) || type.ToLower() == "all")
-                return await _assetService.Get();
+                return await _assetService.GetSortedByName();
 
-            return await _assetService.Get(type);
+            return await _assetService.GetSortedByName(type);
         }
 
         [HttpGet("[action]")]

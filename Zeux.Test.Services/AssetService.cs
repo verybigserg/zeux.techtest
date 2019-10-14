@@ -19,9 +19,19 @@ namespace Zeux.Test.Services
             return await _repository.Get();
         }
 
+        public async Task<IEnumerable<Asset>> GetSortedByName()
+        {
+            return await _repository.GetSortedByName();
+        }
+
         public async Task<IEnumerable<Asset>> Get(string type)
         {
             return await _repository.Get(type);
+        }
+
+        public async Task<IEnumerable<Asset>> GetSortedByName(string type)
+        {
+            return await _repository.GetSortedByName(type);
         }
 
         public async Task<IEnumerable<AssetType>> GetTypes()

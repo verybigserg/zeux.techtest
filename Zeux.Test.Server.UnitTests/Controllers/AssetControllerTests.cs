@@ -18,8 +18,8 @@ namespace Zeux.Test.Server.UnitTests.Controllers
 
             // Arrange
             var mockService = new Mock<IAssetService>();
-            mockService.Setup(service => service.Get())
-                .ReturnsAsync(context.Assets);
+            mockService.Setup(service => service.GetSortedByName())
+                .ReturnsAsync(context.Assets.OrderBy(item=>item.Name));
 
             var controller = new AssetController(mockService.Object);
 
@@ -29,6 +29,7 @@ namespace Zeux.Test.Server.UnitTests.Controllers
             // Assert
             Assert.Equal(context.Assets.Count(), res.Count());
             Assert.IsAssignableFrom<IEnumerable<Asset>>(res);
+            Assert.Equal(context.Assets.OrderBy(item => item.Name), res);
         }
 
         [Fact]
@@ -39,8 +40,8 @@ namespace Zeux.Test.Server.UnitTests.Controllers
             // Arrange
             var type = "Savings";
             var mockService = new Mock<IAssetService>();
-            mockService.Setup(service => service.Get(type))
-                .ReturnsAsync(context.Assets.Where(a => a.Type.Name == type));
+            mockService.Setup(service => service.GetSortedByName(type))
+                .ReturnsAsync(context.Assets.Where(a => a.Type.Name == type).OrderBy(item => item.Name));
 
             var controller = new AssetController(mockService.Object);
 
@@ -50,6 +51,7 @@ namespace Zeux.Test.Server.UnitTests.Controllers
             // Assert
             Assert.Equal(context.Assets.Count(a => a.Type.Name == type), res.Count());
             Assert.IsAssignableFrom<IEnumerable<Asset>>(res);
+            Assert.Equal(context.Assets.Where(a => a.Type.Name == type).OrderBy(item => item.Name), res);
         }
 
         [Fact]
@@ -60,8 +62,8 @@ namespace Zeux.Test.Server.UnitTests.Controllers
             // Arrange
             var type = "Non exists type";
             var mockService = new Mock<IAssetService>();
-            mockService.Setup(service => service.Get(type))
-                .ReturnsAsync(context.Assets.Where(a => a.Type.Name == type));
+            mockService.Setup(service => service.GetSortedByName(type))
+                .ReturnsAsync(context.Assets.Where(a => a.Type.Name == type).OrderBy(item=>item.Name));
 
             var controller = new AssetController(mockService.Object);
 
