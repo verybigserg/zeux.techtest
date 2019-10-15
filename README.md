@@ -10,6 +10,7 @@ Comment: I just followed  "S" from "SOLID". Magic number "400" is chosen just fo
 Comment: I just followed  "О" from "SOLID" and changed method body only in controller. Unit tests were changed to cover new functionality
 
 Frontend:
+
 3. Create a pipe in Angular that make the first letter to uppercase, apply it for Product Name.
 Comment: It's pipe, just pipe, nothing more than pipe:)
 
