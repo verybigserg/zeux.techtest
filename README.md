@@ -1,5 +1,5 @@
 # Zeux Tech Test
-.
+
 ## Test task developer comments
 Backend:
 
